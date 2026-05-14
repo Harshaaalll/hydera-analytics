@@ -1,0 +1,8 @@
+[0m04:58:58.750695 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000026F3FF5ECC0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000026F428C5700>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000026F4275B740>]}
+
+
+============================== 04:58:58.766798 | 4039dcb6-abac-47db-b8e8-7036d8f8ec00 ==============================
+[0m04:58:58.766798 [info ] [MainThread]: Running with dbt=1.12.0-b1
+[0m04:58:58.766798 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'version_check': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': 'C:\\Users\\harsh\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'indirect_selection': 'eager', 'use_colors': 'True', 'invocation_command': 'dbt init hydera_analytics', 'use_experimental_parser': 'False', 'log_path': 'logs'}
+[0m04:58:58.839023 [debug] [MainThread]: Starter project path: C:\Users\harsh\AppData\Roaming\Python\Python312\site-packages\dbt\include\starter_project
+[0m04:58:58.865434 [info ] [MainThread]: Setting up your profile.

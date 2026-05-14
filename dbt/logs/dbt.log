@@ -1,0 +1,35 @@
+[0m04:57:25.199918 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AD002B2450>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AD7FD2A000>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AD001A13A0>]}
+
+
+============================== 04:57:25.221443 | b91ef44a-a51a-4a89-8a73-15570779db12 ==============================
+[0m04:57:25.221443 [info ] [MainThread]: Running with dbt=1.12.0-b1
+[0m04:57:25.221443 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'version_check': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\harsh\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'use_colors': 'True', 'invocation_command': 'dbt init hydera_analytics', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'log_path': 'logs'}
+[0m04:57:25.272118 [info ] [MainThread]: Creating dbt configuration folder at C:\Users\harsh\.dbt
+[0m04:57:25.286745 [debug] [MainThread]: Starter project path: C:\Users\harsh\AppData\Roaming\Python\Python312\site-packages\dbt\include\starter_project
+[0m04:57:25.341569 [info ] [MainThread]: Setting up your profile.
+[0m04:58:12.647433 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+list index out of range
+[0m04:58:12.665369 [error] [MainThread]: Traceback (most recent call last):
+  File "C:\Users\harsh\AppData\Roaming\Python\Python312\site-packages\dbt\cli\requires.py", line 184, in wrapper
+    result, success = func(*args, **kwargs)
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\harsh\AppData\Roaming\Python\Python312\site-packages\dbt\cli\requires.py", line 130, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\harsh\AppData\Roaming\Python\Python312\site-packages\dbt\cli\main.py", line 499, in init
+    results = task.run()
+              ^^^^^^^^^^
+  File "C:\Users\harsh\AppData\Roaming\Python\Python312\site-packages\dbt\task\init.py", line 360, in run
+    self.setup_profile(profile_name)
+  File "C:\Users\harsh\AppData\Roaming\Python\Python312\site-packages\dbt\task\init.py", line 263, in setup_profile
+    adapter = self.ask_for_adapter_choice()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\harsh\AppData\Roaming\Python\Python312\site-packages\dbt\task\init.py", line 245, in ask_for_adapter_choice
+    return available_adapters[numeric_choice - 1]
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+
+[0m04:58:12.672098 [debug] [MainThread]: Command `dbt init` failed at 04:58:12.672098 after 48.10 seconds
+[0m04:58:12.672098 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AD001A13A0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AD0084AB70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AD000AB9B0>]}
+[0m04:58:12.672098 [debug] [MainThread]: Flushing usage events
+[0m04:58:14.742686 [debug] [MainThread]: An error was encountered while trying to flush usage events
