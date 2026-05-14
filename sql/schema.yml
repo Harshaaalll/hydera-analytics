@@ -1,0 +1,92 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Raw tables loaded by ingest.py from RERA portal and Telangana open data
+    schema: public
+    tables:
+      - name: raw_rera_projects
+        description: RERA-registered projects scraped from rera.telangana.gov.in
+        columns:
+          - name: project_id
+            tests: [not_null, unique]
+          - name: builder_name
+            tests: [not_null]
+          - name: registration_date
+            tests: [not_null]
+
+      - name: raw_rera_complaints
+        description: Complaint and grievance records from RERA portal
+        columns:
+          - name: complaint_id
+            tests: [not_null, unique]
+
+      - name: raw_property_registrations
+        description: Property sale deed registrations from data.opencity.in
+        columns:
+          - name: registration_doc_no
+            tests: [not_null, unique]
+
+models:
+  - name: stg_projects
+    description: Cleaned RERA project records — one row per project
+    columns:
+      - name: project_id
+        tests: [not_null, unique]
+      - name: builder_name_raw
+        tests: [not_null]
+      - name: registration_date
+        tests: [not_null]
+
+  - name: stg_builders
+    description: Deduplicated builder dimension
+    columns:
+      - name: builder_id
+        tests: [not_null, unique]
+      - name: builder_key
+        tests: [not_null, unique]
+
+  - name: stg_complaints
+    description: Cleaned complaint records
+    columns:
+      - name: complaint_id
+        tests: [not_null, unique]
+
+  - name: stg_transactions
+    description: Cleaned property sale deed registrations
+    columns:
+      - name: transaction_id
+        tests: [not_null, unique]
+      - name: price_per_sqft
+        tests: [not_null]
+
+  - name: mart_builder_scorecard
+    description: |
+      Module 1 — Builder reliability scorecard.
+      One row per builder with ≥3 projects.
+      Key metrics: avg_delay_months, on_time_pct, complaints_per_100_units, risk_tier.
+    columns:
+      - name: builder_key
+        tests: [not_null, unique]
+      - name: risk_tier
+        tests:
+          - accepted_values:
+              values: [1, 2, 3, 4]
+
+  - name: mart_supply_demand
+    description: |
+      Module 2 — Quarterly supply vs demand by locality.
+      Key metrics: absorption_rate_pct, months_of_inventory, oversupply_flag.
+
+  - name: mart_price_fairness
+    description: |
+      Module 3 — Launch price vs trailing 4Q market median by locality.
+      Key metric: premium_over_market_pct, overpriced_flag.
+
+  - name: mart_delay_features
+    description: |
+      Module 4 — Feature engineering table for delay prediction model.
+      11 features per active/completed project. is_delayed is the target variable.
+    columns:
+      - name: project_id
+        tests: [not_null, unique]
