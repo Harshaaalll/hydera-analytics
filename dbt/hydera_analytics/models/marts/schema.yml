@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: mart_builder_scorecard
+    description: |
+      Module 1 — Builder reliability scorecard.
+      One row per builder with ≥3 projects.
+      Key metrics: avg_delay_months, on_time_pct, complaints_per_100_units, risk_tier.
+    columns:
+      - name: builder_key
+        tests: [not_null, unique]
+      - name: risk_tier
+        tests:
+          - accepted_values:
+              values: [1, 2, 3, 4]
+
+  - name: mart_supply_demand
+    description: |
+      Module 2 — Quarterly supply vs demand by locality.
+      Key metrics: absorption_rate_pct, months_of_inventory, oversupply_flag.
+    columns:
+      - name: locality
+        tests: [not_null]
+      - name: report_quarter
+        tests: [not_null]
+
+  - name: mart_price_fairness
+    description: |
+      Module 3 — Launch price vs trailing 4Q market median by locality.
+      Key metric: premium_over_market_pct, overpriced_flag.
+    columns:
+      - name: project_id
+        tests: [not_null, unique]
+      - name: market_median_per_sqft
+        tests: [not_null]
+
+  - name: mart_delay_features
+    description: |
+      Module 4 — Feature engineering table for delay prediction model.
+      11 features per active/completed project. is_delayed is the target variable.
+    columns:
+      - name: project_id
+        tests: [not_null, unique]

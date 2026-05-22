@@ -1,0 +1,15 @@
+# Copy this file to ~/.dbt/profiles.yml and fill in your credentials.
+# DO NOT commit the real profiles.yml — it contains passwords.
+
+hydera_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      port: 5432
+      user: postgres
+      password: YOUR_PASSWORD_HERE
+      dbname: hydera_rera
+      schema: marts
+      threads: 4
